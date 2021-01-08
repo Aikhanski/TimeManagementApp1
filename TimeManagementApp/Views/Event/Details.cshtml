@@ -1,0 +1,32 @@
+﻿@model TimeManagementApp.Models.EventDetailView
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>@Model.Title</h4>
+    <h5>@Model.Date</h5>
+    <div class="jumbotron text-center">
+        <p>@Model.Description</p>
+    </div>
+    <div class="jumbotron text-center">
+        <address>@Model.Address</address>
+        <phone>@Model.Phone</phone>
+    </div>
+    @if (Model.Participants != null && Model.Participants.Count > 0)
+    {
+        <h6>Participants</h6>
+        <ul class="list-group">
+            @foreach (var item in Model.Participants)
+            {
+                <li class="list-group-item">@item.User.FirstName  @item.User.LastName    |     @item.User.Email</li>
+            }
+        </ul>
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TimeManagementApp.Models
+@inject UserManager<User> UserManager
+
+@model TimeManagementApp.Models.Event
+
+@{
+    ViewData["Title"] = "Participate";
+}
+@if (Model.EventParticipants != null && Model.EventParticipants.Any(x => x.UserId == UserManager.GetUserId(User)))
+{
+    <h3>You are already participated</h3>
+}
+else 
+{ 
+    <h3>Are you sure you want to participate in this event?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+        </dl>
+
+        <form asp-action="Participate">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Participate" class="btn btn-success" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+</div>
+}

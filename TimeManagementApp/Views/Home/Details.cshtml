@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TimeManagementApp.Models
+@inject SignInManager<User> SignInManager
+@model TimeManagementApp.Models.EventDetailView
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>@Model.Title</h4>
+    <h5>@Model.Date</h5>
+    <div class="jumbotron text-center">
+        <p>@Model.Description</p>
+    </div>
+    <div class="jumbotron text-center">
+        <address>@Model.Address</address>
+        <phone>@Model.Phone</phone>
+    </div>
+</div>
+<div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a asp-action="Participate" asp-route-id="@Model.Id">Participate</a>
+    }
+    |<a asp-action="Index">Back to List</a>
+</div>
